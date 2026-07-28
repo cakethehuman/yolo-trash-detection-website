@@ -4,10 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js"></script>
-    <title>Cek koneksi backend</title> 
+    <link rel="stylesheet" href="style.css">
+    <title>Trashly</title> 
 </head>
 <body>
-    <h1>Trash Detection</h1>
-    <p id="status"></p>
+    <!--Header-->
+    <div class="container">
+        <header>
+            <h1>Trashly</h1>
+            <h2>Waste Detection with Computer Vision</h2>
+            
+            <p>
+                Upload an image to detect and identify different types of waste using computer vision.
+            </p>
+        </header>
+    </div>
+
+    <!--Upload Section-->
+    <section class="upload-section">
+        <h3>Upload Image</h3>
+        <input 
+            type="file"
+            id="imageInput"
+            accpet="image/*">
+        <div class="preview">
+            <img
+                id="previewImage"
+                src=""
+                alt="Image Preview">
+            
+            <p id="previewText">
+                Image preview will apear here
+            </p>
+        </div>
+
+        <button id="detectBtn">
+            Detect Waste
+        </button>
+    </section>
+
+    <!--Result Section-->
+    <section class="result-section">
+            <h3>Detection Result</h3>
+            <div class="result-card">
+                <p>
+                    <strong>Prediction:</strong>
+                    <span id="prediction">-</span>
+                </p>
+                <p>
+                    <strong>Confidence:</strong>
+                    <span id="confidence">-</span>
+                </p>
+                <p>
+                    <strong>Detected Objects:</strong>
+                    <span id="objects">-</span>
+                </p>
+            </div>
+        </section>
 </body>
 </html>
