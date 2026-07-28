@@ -1,7 +1,7 @@
 import logging
-from typing import Optional
+from typing import Annotated, Literal, Optional
 
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from pydantic import BaseModel, Field
@@ -32,8 +32,23 @@ app.add_middleware(
 
 class Settings(BaseSettings):
     client_id : str 
+    
+ALLOWED_FILE_TYPE = [".jpg", ".jpeg", ".png"]
 
 @app.get('/', tags="testing")
 def test():
     logging.info("User has used / command to do testing")
     return {"message" : "hello world"}
+
+@app.post("/predict")
+def predict_image(file: UploadFile = File(...)):
+    fn = file.filename.lower()
+    if fn not in ALLOWED_FILE_TYPE:
+        raise HTTPException(
+            status_code=404,
+            detail = "Insert a valid file type"
+        )
+    return {"Succesfully" : "Yes file uploded succesfully"}
+    
+    
+    
